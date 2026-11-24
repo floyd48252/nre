@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="BIGJN insights: investigations, policy notes, and field-reporting themes on gambling markets and public accountability.">
+  <title>Insights | BIGJN</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="BIGJN Gambling Justice Network home">
+      <img src="logo.png" alt="">
+      <span class="site-brand-copy"><span class="site-brand-name">BIGJN</span><span class="site-brand-tagline">Gambling Justice Network</span></span>
+    </a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu-panel"><span>MENU</span><span class="menu-icon" aria-hidden="true"><span></span><span></span></span></button>
+  </header>
+  <div class="menu-panel" id="menu-panel" aria-hidden="true"><div><nav aria-label="Main navigation">
+    <a href="index.html">HOME</a><a href="research.html">RESEARCH &amp; POLICY</a><a href="index.html#platform">PLATFORM</a><a href="insights.html" aria-current="page">INSIGHTS</a><a href="our-work.html">OUR WORK</a><a href="community.html">PARTNERSHIPS &amp; FUNDING</a><a href="connect.html">MEMBER ACCESS</a><a href="contact.html">CONTACT</a>
+  </nav><p class="menu-note">Evidence. Accountability. Change.</p></div></div>
+  <main id="main">
+    <header class="page-hero"><div class="wrap">
+      <span class="eyebrow">BIGJN insights</span>
+      <h1>Evidence for a <span class="gold italic">fairer</span> industry.</h1>
+      <p>Explore investigations, policy analysis, and reporting themes on gambling markets, consumer protection, and the communities affected.</p>
+      <nav class="actions" aria-label="Insights sections">
+        <a class="button" href="#investigations">Investigations</a>
+        <a class="button" href="#policy-notes">Policy notes</a>
+        <a class="button" href="#field-reporting">Field reporting</a>
+      </nav>
+    </div></header>
+
+    <section class="image-section" id="investigations">
+      <div class="wrap">
+        <header class="archive-heading">
+          <span class="eyebrow">01 / Investigations</span>
+          <h2>Follow the evidence.</h2>
+          <p>Research summaries on anti-money-laundering controls, the reported cost of gambling harm, and the public-health impact of advertising.</p>
+        </header>
+        <div class="image-grid">
+          <details class="image-card">
+            <summary class="archive-summary">
+              <div class="image-card-photo"><img src="legal-research.jpg" alt="Legal research documents" loading="lazy" decoding="async" width="1200" height="750"></div>
+              <div class="image-card-copy"><span class="blog-category">Data-driven investigation</span><h3>AML in iGaming: Systemic Failures</h3><p>Examines suspicious activity reporting and anti-money-laundering controls across major jurisdictions.</p><span class="archive-expand">View findings</span></div>
+            </summary>
+            <div class="archive-details">
+              <p class="archive-claim">The report says 67% of operators fail to meet basic AML standards.</p>
+              <h4>Methodology</h4>
+              <p>The report describes an analysis of Suspicious Activity Reports (SARs) from 2022–2024 across the UK, Malta, and Gibraltar.</p>
+              <h4>Reported findings</h4>
+              <ul>
+                <li>Average SAR filing rate: 0.2%, compared with the report's stated 2–3% benchmark.</li>
+                <li>42% of operators reportedly have no dedicated AML officer.</li>
+                <li>Customer due-diligence gaps were reported in 78% of cases.</li>
+              </ul>
+              <h4>Example query</h4>
+              <p class="aml-filename">query_sar_failures.sql</p>
+              <pre class="aml-query"><code>SELECT operator_name, jurisdiction,
+    COUNT(*) as total_transactions,
+    SUM(CASE WHEN sar_filed = true THEN 1 ELSE 0 END) as sar_count,
+    ROUND(SUM(CASE WHEN sar_filed = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as sar_percentage
+FROM compliance_data
+WHERE transaction_amount &gt; 10000
+GROUP BY operator_name, jurisdiction
+HAVING sar_percentage &lt; 0.5
+ORDER BY sar_percentage ASC;</code></pre>
+              <p class="aml-note">These are claims presented in the report. The underlying dataset was not supplied with this summary, so the figures have not been independently verified here.</p>
+              <dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Category</dt><dd>Anti-Money Laundering</dd></div></dl>
+            </div>
+          </details>
+          <details class="image-card">
+            <summary class="archive-summary">
+              <div class="image-card-photo"><img src="economic-impact.jpg" alt="Data analytics related to gambling markets" loading="lazy" decoding="async" width="1200" height="750"></div>
+              <div class="image-card-copy"><span class="blog-category">Research &amp; data</span><h3>The Economic Impact of Problem Gambling</h3><p>A cross-national report on social costs, treatment access, and player-protection rules in 15 European markets.</p><span class="archive-expand">View report summary</span></div>
+            </summary>
+            <div class="archive-details">
+              <p class="archive-claim">The report describes a study of more than 50,000 people across 15 European countries and argues that current protections are insufficient.</p>
+              <h4>Reported metrics</h4>
+              <ul>
+                <li><strong>Annual social cost:</strong> €15.3 billion.</li>
+                <li><strong>Treatment gap:</strong> 85% of affected people reportedly receive no support.</li>
+                <li><strong>Regulatory coverage:</strong> 40% of markets reportedly have adequate player protections.</li>
+              </ul>
+              <p>The source describes a 120-page report with methodology, raw data, and policy recommendations. A full report file is not hosted on this site.</p>
+              <p class="aml-note">Figures are reported as stated in the article; the underlying dataset was not supplied with this summary.</p>
+              <dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Published</dt><dd><time datetime="2026-04-08">April 8, 2026</time></dd></div><div><dt>Category</dt><dd>Research &amp; Data</dd></div></dl>
+            </div>
+          </details>
+          <details class="image-card">
+            <summary class="archive-summary">
+              <div class="image-card-photo"><img src="responsible-gambling.jpg" alt="Responsible gambling awareness concept" loading="lazy" decoding="async" width="1200" height="750"></div>
+              <div class="image-card-copy"><span class="blog-category">Public health perspective</span><h3>The Real Cost of Gambling Advertising</h3><p>Considers young people's exposure to gambling promotion and calls for stronger safeguards.</p><span class="archive-expand">View findings</span></div>
+            </summary>
+            <div class="archive-details">
+              <h4>Reported findings</h4>
+              <ul>
+                <li>Children reportedly see 3–5 gambling advertisements per day during sports broadcasts.</li>
+                <li>The article associates early exposure with a 38% increase in problem-gambling risk.</li>
+                <li>It argues current rules do not adequately protect minors.</li>
+              </ul>
+              <h4>Recommendations</h4>
+              <p>The article calls for restrictions on gambling advertising during family viewing hours and on social platforms popular with young people.</p>
+              <p class="aml-note">Statistics are presented as stated in the article and have not been independently verified here.</p>
+              <dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Published</dt><dd><time datetime="2026-04-03">April 3, 2026</time></dd></div><div><dt>Categories</dt><dd>Social Impact; Harm Reduction</dd></div></dl>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-section" id="policy-notes">
+      <div class="wrap">
+        <header class="archive-heading">
+          <span class="eyebrow">02 / Policy notes</span>
+          <h2>Ideas for better protections.</h2>
+          <p>Practical proposals and policy questions drawn from the articles. Legal and statistical claims are attributed to their source and may require independent verification.</p>
+        </header>
+        <div class="image-grid">
+          <details class="image-card">
+            <summary class="archive-summary">
+              <div class="image-card-photo"><img src="responsible-gambling.jpg" alt="Responsible gambling support resources" loading="lazy" decoding="async" width="1200" height="750"></div>
+              <div class="image-card-copy"><span class="blog-category">Harm reduction</span><h3>Why Responsible Gambling Tools Are Failing a Generation</h3><p>Looks beyond self-exclusion and deposit limits toward earlier, more responsive safeguards.</p><div class="archive-meta"><span>BIGJN Administrator</span><time datetime="2026-04-14">Apr 14, 2026</time></div><span class="archive-expand">Read policy note</span></div>
+            </summary>
+            <div class="archive-details">
+              <p class="archive-claim">The article argues that self-exclusion and deposit limits are reactive tools and should not be the only protections available.</p>
+              <h4>Suggested measures</h4>
+              <ul>
+                <li><strong>Personalized risk scoring:</strong> Identify concerning behavior earlier, with appropriate privacy safeguards.</li>
+                <li><strong>Cooling-off periods:</strong> Require breaks after defined loss thresholds.</li>
+                <li><strong>Staff training:</strong> Help staff recognize potential harm patterns and respond promptly.</li>
+              </ul>
+              <dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Published</dt><dd><time datetime="2026-04-14">April 14, 2026</time></dd></div><div><dt>Category</dt><dd>Harm Reduction</dd></div></dl>
+            </div>
+          </details>
+          <details class="image-card">
+            <summary class="archive-summary">
+              <div class="image-card-photo"><img src="policy-meeting.jpg" alt="People discussing policy and consumer rights" loading="lazy" decoding="async" width="1200" height="750"></div>
+              <div class="image-card-copy"><span class="blog-category">Consumer rights</span><h3>Challenging Unfair Terms in Online Casinos</h3><p>A UK-focused overview of disputed contract terms, bonus conditions, and possible complaint steps.</p><div class="archive-meta"><span>BIGJN Administrator</span><time datetime="2026-04-17">Apr 17, 2026</time></div><span class="archive-expand">Read policy note</span></div>
+            </summary>
+            <div class="archive-details">
+              <h4>Issues discussed</h4>
+              <p>The article references the UK Consumer Rights Act 2015 and terms that may create a significant imbalance against consumers.</p>
+              <ul>
+                <li>Wagering conditions that are not clearly disclosed.</li>
+                <li>Terms that allow an operator to close accounts unilaterally.</li>
+                <li>Excessive chargeback fees.</li>
+              </ul>
+              <h4>Possible steps</h4>
+              <ol>
+                <li>Keep records, including screenshots, emails, and account communications.</li>
+                <li>Raise a complaint with the relevant regulator, such as the UKGC or MGA where applicable.</li>
+                <li>Consider qualified legal advice where significant losses are involved.</li>
+              </ol>
+              <p class="aml-note">General information, not legal advice. Consumer protections and complaint routes depend on jurisdiction and circumstances.</p>
+              <dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Published</dt><dd><time datetime="2026-04-17">April 17, 2026</time></dd></div><div><dt>Categories</dt><dd>Consumer Rights; Licensing</dd></div></dl>
+            </div>
+          </details>
+          <details class="image-card">
+            <summary class="archive-summary">
+              <div class="image-card-photo"><img src="community-team.jpg" alt="Team collaborating on a shared project" loading="lazy" decoding="async" width="1200" height="750"></div>
+              <div class="image-card-copy"><span class="blog-category">Industry accountability</span><h3>The Case for Public Benefit Corporations in Gaming</h3><p>Explores whether corporate governance can balance financial aims with stated social objectives.</p><div class="archive-meta"><span>BIGJN Administrator</span><time datetime="2026-04-24">Apr 24, 2026</time></div><span class="archive-expand">Read policy note</span></div>
+            </summary>
+            <div class="archive-details">
+              <h4>Rethinking corporate structure</h4>
+              <p>The article contrasts shareholder-focused governance with public-benefit corporations, which are designed to consider social objectives alongside financial performance.</p>
+              <h4>Potential advantages</h4>
+              <ol>
+                <li>Proactive compliance may help reduce some regulatory friction.</li>
+                <li>A public-benefit commitment may strengthen brand trust and player loyalty.</li>
+                <li>Long-term sustainability can be prioritized over short-term gains.</li>
+              </ol>
+              <h4>Industry update</h4>
+              <p>The report states that three major operators announced conversion plans in 2024; this claim has not been independently verified here.</p>
+              <dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Published</dt><dd><time datetime="2026-04-24">April 24, 2026</time></dd></div><div><dt>Categories</dt><dd>Industry Accountability; Fair Gaming</dd></div></dl>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-section" id="field-reporting">
+      <div class="wrap">
+        <header class="archive-heading">
+          <span class="eyebrow">03 / Field reporting</span>
+          <h2>Grounded in lived experience.</h2>
+          <p>These are reporting themes and leads, not completed field reports or independently established findings. The available material does not include interviews, field notes, or a full article on hybrid gaming.</p>
+        </header>
+        <div class="chapter-list">
+          <article class="chapter">
+            <span class="chapter-number">REPORTING THEME 01</span><h3>Access &amp; markets</h3>
+            <p class="chapter-intro">Questions about how digital expansion reaches new communities and whether safeguards keep pace.</p>
+            <div class="chapter-story"><span class="chapter-story-label">Market access</span><h4>Betting in everyone's pocket</h4><p>Explore how mobile platforms may change access, spending habits, and the path from casual play to financial strain.</p></div>
+            <div class="chapter-story"><span class="chapter-story-label">Cross-border growth</span><h4>When the operator is offshore</h4><p>Ask who responds to complaints and consumer-protection concerns when platforms operate across jurisdictions.</p></div>
+            <div class="chapter-story"><span class="chapter-story-label">Emerging audiences</span><h4>The next generation of bettors</h4><p>Examine how sports, social media, and digital promotions shape young adults' encounters with betting.</p></div>
+          </article>
+          <article class="chapter">
+            <span class="chapter-number">REPORTING THEME 02</span><h3>Community costs</h3>
+            <p class="chapter-intro">Look beyond individual losses to the possible effects on families, support services, and local communities.</p>
+            <div class="chapter-story"><span class="chapter-story-label">Household impact</span><h4>The bills gambling leaves behind</h4><p>Trace how debt, secrecy, and financial pressure can affect household stability.</p></div>
+            <div class="chapter-story"><span class="chapter-story-label">Public health</span><h4>Finding help before crisis</h4><p>Ask whether timely, affordable support is available and what barriers prevent people from seeking it.</p></div>
+            <div class="chapter-story"><span class="chapter-story-label">Community costs</span><h4>Who carries the burden?</h4><p>Explore potential impacts on workplaces, community services, and public resources.</p></div>
+          </article>
+          <article class="chapter">
+            <span class="chapter-number">REPORTING THEME 03</span><h3>Rules &amp; accountability</h3>
+            <p class="chapter-intro">Test the promises of oversight against consumer experiences and the practical reach of enforcement.</p>
+            <div class="chapter-story"><span class="chapter-story-label">Enforcement</span><h4>Rules without consequences</h4><p>Follow how complaints are handled and where oversight or enforcement may fall short.</p></div>
+            <div class="chapter-story"><span class="chapter-story-label">Advertising</span><h4>Promotions with no clear owner</h4><p>Examine responsibility for affiliate marketing, misleading offers, and promotions reaching vulnerable audiences.</p></div>
+            <div class="chapter-story"><span class="chapter-story-label">Player protection</span><h4>Safer-play tools that miss the mark</h4><p>Investigate whether limits, self-exclusion, and warnings are accessible, effective, and honored across platforms.</p></div>
+          </article>
+        </div>
+      </div>
+      <div class="wrap" style="padding-top:28px">
+        <details class="image-card">
+          <summary class="archive-summary">
+            <div class="image-card-photo"><img src="hero-bg.jpg" alt="Digital gaming environment" loading="lazy" decoding="async" width="1200" height="750"></div>
+            <div class="image-card-copy"><span class="blog-category">Market analysis · April 15, 2026</span><h3>The Rise of Hybrid Gaming Models</h3><p>The supplied post introduction describes social gaming and real-money gambling converging in new hybrid models.</p><span class="archive-expand">View available notes</span></div>
+          </summary>
+          <div class="archive-details"><p>No full article body or field findings were included in the available post information, so no further claims are made here.</p><dl class="article-notes"><div><dt>Author</dt><dd>BIGJN Administrator</dd></div><div><dt>Published</dt><dd><time datetime="2026-04-15">April 15, 2026</time></dd></div><div><dt>Categories</dt><dd>Market Analysis; Industry Accountability</dd></div></dl></div>
+        </details>
+      </div>
+      <div class="community-callout">
+        <div class="wrap"><span class="eyebrow">Contribute to the record</span><h2>Have a lead or <span class="gold italic">first-hand insight?</span></h2><p>Share verifiable documents, lived experience, or expertise with the editorial desk. Please do not send confidential documents through ordinary email.</p><div class="actions"><a class="button button-primary" href="contact.html">Contact BIGJN <span class="arrow" aria-hidden="true">→</span></a><a class="button" href="research.html">Browse research</a></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><div class="footer-grid"><div><img class="brand-logo" src="logo.png" alt="BIGJN"><p class="footer-blurb">Independent research, policy, training, and regulatory intelligence for responsible gambling and consumer protection.</p></div><div><h3 class="footer-title">Explore</h3><nav class="footer-links"><a href="research.html">Research</a><a href="insights.html" aria-current="page">Insights</a><a href="our-work.html">Our work</a></nav></div><div><h3 class="footer-title">Connect</h3><nav class="footer-links"><a href="connect.html">Member access</a><a href="community.html">Community</a><a href="contact.html">Contact</a></nav></div></div><div class="copyright">© 2026 BIGJN. All rights reserved.</div></div></footer>
+  <script src="site.js"></script>
+</body>
+</html>
